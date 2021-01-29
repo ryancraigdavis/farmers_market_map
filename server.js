@@ -9,30 +9,30 @@ const util = require('util'); // Needed in order to use await/async with pool co
 
 // MySQL pool connections
 const pool = mysql.createPool({
-  connectionLimit  : 10,
-  host  : 'classmysql.engr.oregonstate.edu',
-  user  : 'cs340_daviryan',
-  password: 'd@taB0ss',
-  database: 'cs340_daviryan'
+  	connectionLimit  : 10,
+  	host  : 'classmysql.engr.oregonstate.edu',
+  	user  : 'cs340_daviryan',
+  	password: 'd@taB0ss',
+  	database: 'cs340_daviryan'
 });
 
 // Ping database to check for common exception errors.
 pool.getConnection((err, connection) => {
-  if (err) {
-    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-      console.error('Database connection was closed.')
-    }
-    if (err.code === 'ER_CON_COUNT_ERROR') {
-      console.error('Database has too many connections.')
-    }
-    if (err.code === 'ECONNREFUSED') {
-      console.error('Database connection was refused.')
-    }
-  }
+  	if (err) {
+		if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+	  		console.error('Database connection was closed.')
+		}
+		if (err.code === 'ER_CON_COUNT_ERROR') {
+	  		console.error('Database has too many connections.')
+		}
+		if (err.code === 'ECONNREFUSED') {
+	  		console.error('Database connection was refused.')
+		}
+  	}
 
-  if (connection) connection.release()
+	if (connection) connection.release()
 
-  return
+  	return
 })
 
 // https://mhagemann.medium.com/create-a-mysql-database-middleware-with-node-js-8-and-async-await-6984a09d49f4
@@ -50,10 +50,10 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(function(req,res,next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
+  	res.setHeader('Access-Control-Allow-Origin', '*');
+  	res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
+  	res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  	next();
 })
 
 // API's

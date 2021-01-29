@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Hello World!</title>
-</head>
-<body>
-	<p>Hello world</p>
-	<div id="test_out"></div>
-	<button id="test_in">Test</button>
-</body>
-<script type="text/javascript" src="scripts/map.js"></script>
+  	<head>
+    	<title>Farmers Market Map</title>
+    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbWNkGwJyu5GHhA9UbMlFSVycIJMSJMP8&callback=initMap&libraries=&v=weekly"defer></script>
+    	<link rel="stylesheet" type="text/css" href="css/style.css" />
+  	</head>
+  	<body>
+    	<h3>Find Farmers Markets in Your Area</h3>
+    	<!--The div element for the map -->
+    	<div id="map"></div>
+  	</body>
+  	<script src="scripts/map.js"></script>
 </html>
