@@ -4,3 +4,6 @@ services:
 
 before_install:
   - docker build -t ryancraigdavis/farmers_market_map -f Dockerfile .
+
+script:
+  - docker run ryancraigdavis/farmers_market_map npm start
