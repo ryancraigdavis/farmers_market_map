@@ -2,6 +2,20 @@
 #map {
   	height: 400px;
   	/* The height is 400 pixels */
-  	width: 50%;
+  	width: 100%;
   	/* The width is the width of the web page */
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.map-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
 }
