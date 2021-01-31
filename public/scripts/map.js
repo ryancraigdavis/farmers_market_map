@@ -1,8 +1,10 @@
-
 // Google maps tutorial
 // https://developers.google.com/maps/documentation/javascript/adding-a-google-map#maps_add_map-typescript
 // Initialize and add the map
 let map, infoWindow, geocoder;
+
+// Submit button for changing the map location
+var zipcodeButton = document.getElementById("zipSearch")
 
 // Server location address
 var serverUrl = 'http://localhost:3000';
@@ -52,6 +54,7 @@ function placeMarkets(){
 };
 
 function initMap() {
+	console.log('test')
 	geocoder = new google.maps.Geocoder();
 	map = new google.maps.Map(document.getElementById("map"), {
 		center: { lat: 34.052235, lng: -118.243683 },
@@ -61,17 +64,21 @@ function initMap() {
 
 	// Go to specified zip code
 	// https://developers.google.com/maps/documentation/javascript/geocoding
-	const zipcodeInput = document.createElement("input");
-	zipcodeInput.setAttribute("id", "addressInput");
-	zipcodeInput.setAttribute("placeholder", "Address, City, or Zip");
-	const zipcodeButton = document.createElement("button");
-	zipcodeButton.textContent = "Submit";
-	map.controls[google.maps.ControlPosition.TOP_CENTER].push(zipcodeInput);
-	map.controls[google.maps.ControlPosition.TOP_CENTER].push(zipcodeButton);
+	// const zipcodeInput = document.createElement("input");
+	// zipcodeInput.setAttribute("id", "addressInput");
+	// zipcodeInput.setAttribute("placeholder", "Address, City, or Zip");
+	// const zipcodeButton = document.createElement("button");
+	// zipcodeButton.textContent = "Submit";
+	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(zipcodeInput);
+	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(zipcodeButton);
+	var mapHtml = document.getElementById('mapSearch');
+    mapHtml.innerHTML = "<input class='form-control me-2' type='search' id='addressInput' placeholder='Address, City, or Zip' aria-label='Search'><button class='btn btn-outline-success' id='zipSearch'>Search</button>"
+    var zipcodeButton = document.getElementById('zipSearch');
+	var address = document.getElementById('addressInput').value;
 	zipcodeButton.addEventListener("click", () => {
-		var address = document.getElementById('addressInput').value;
 		geocoder.geocode( { 'address': address}, function(results, status) {
 			if (status == 'OK') {
+				console.log(address)
 				map.setCenter(results[0].geometry.location);
 				map.setZoom(13);
 			} else {
