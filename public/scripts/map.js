@@ -99,3 +99,14 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	);
 	infoWindow.open(map);
 }
+
+// DISPLAY TESTING ONLY
+document.getElementById("displayClick").addEventListener("click", displayResults);
+
+function displayResults() {
+  document.getElementById("results").innerHTML = "Results";
+  document.getElementById("vendor1").innerHTML = "9149 S Sepulveda Blvd: Sunday, Wednesday, Friday";
+  document.getElementById("vendor2").innerHTML = "R922 Gayley Ave: Saturday, Sunday";
+  document.getElementById("vendor3").innerHTML = "9245 Venice Blvd: Monday, Wednesday, Friday";
+  document.getElementById("vendor4").innerHTML = "R3640 Cahuenga Blvd: Tuesday";
+}

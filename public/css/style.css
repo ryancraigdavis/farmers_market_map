@@ -1,21 +1,100 @@
+:root {
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: #23232e;
+  --bg-secondary: #141418;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+h1,
+h3 {
+  font-family: "Fredericka the Great", cursive;
+  display: flex;
+  justify-content: left;
+  padding-left: 3px;
+}
+
 /* Set the size of the div element that contains the map */
 #map {
-  	height: 400px;
-  	/* The height is 400 pixels */
-  	width: 100%;
-  	/* The width is the width of the web page */
+  height: 100vh;
+  width: 100%;
 }
 
-.main-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
+.leftside,
+.rightside {
+  height: 100vh;
 }
 
-.map-container {
+.leftside {
+  overflow: scroll;
+}
+
+.searchButton {
+  border-radius: 5px;
+  width: 150px;
+}
+
+.dropdown-menu {
+  background-color: black;
+  font-size: 50px;
+}
+
+.dropdown-toggle {
+  font-size: 18px;
+  color: black;
+  z-index: 9999;
+}
+
+.sidebar {
+  width: 100%;
+  /* width: 200px; */
+  /* height: 100vh; */
+  /* position: fixed; */
+  background-color: var(--bg-primary);
+  /* transition: width 200ms ease; */
+  /* z-index: 9999; */
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+}
+
+.nav-item {
+  /* width: 75px; */
+  width: 100%;
+}
+
+.nav-link {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
+  /* height: 5rem; */
+  color: var(--text-primary);
+  text-decoration: none;
+  width: 80px;
+}
+
+.link-text {
+  display: none;
+}
+
+.sidebar:hover .link-text {
+  display: block;
+}
+
+#addHeader {
+  justify-content: center;
 }
