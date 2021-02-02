@@ -7,7 +7,7 @@ let map, infoWindow, geocoder;
 var zipcodeButton = document.getElementById("zipSearch")
 
 // Server location address
-var serverUrl = 'http://localhost:3000';
+var serverUrl = 'http://localhost:1359';
 
 function placeMarkets(){
 

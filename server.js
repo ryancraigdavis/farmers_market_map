@@ -61,5 +61,5 @@ app.use("/api/sites", require("./routes/api/sites"));
 app.use("/api/locations", require("./routes/api/locations"));
 
 // Run Server
-console.log('Express started on port 3000 🔹; press Ctrl-C to terminate.');
-http.createServer(app).listen(3000);
+console.log('Express started on port 1359 🔹; press Ctrl-C to terminate.');
+http.createServer(app).listen(1359);
