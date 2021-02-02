@@ -63,6 +63,13 @@
                         <br>
                         <input id="zip" type="" name="zip" class="mb-1 text-input contact-input" placeholder="Zip" style="width:35%">
                         <br>
+                        <input id="sunday" type="checkbox" name="day" value="true" style="width:2%" class="ml-4"> WiFi
+                        <input id="sunday" type="checkbox" name="day" value="true" style="width:2%" class="ml-4"> Restrooms
+                        <input id="sunday" type="checkbox" name="day" value="true" style="width:2%" class="ml-4"> Water
+                        <input id="sunday" type="checkbox" name="day" value="true" style="width:2%" class="ml-4"> Public Transit
+                        <input id="sunday" type="checkbox" name="day" value="true" style="width:2%" class="ml-4"> Parking
+                        <input id="sunday" type="checkbox" name="day" value="true" style="width:2%" class="ml-4"> Other
+                        <br>
                         <table>
                             <thead>
                                 <tr>
@@ -141,8 +148,56 @@
                     </fieldset>
                 </form>
             
+                <br>
+                <table class="vendorTable">
+                    <thead class="vendorTable">
+                        <tr class="vendorTable">
+                            <th>Market Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Zip</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="vendorTable">
+                        <tr class="vendorTable" id="marketRow1">
+                            <td>Market 1</td>
+                            <td>123 Main Street</td>
+                            <td>Los Angeles</td>
+                            <td>California</td>
+                            <td>90001</td>
+                            <td>Saturday</td>
+                            <td>8:00-20:00</td>
+                            <td><button class="marketButton" type="submit" id="market1Click" value="subit">Remove</button></td>
+                        </tr>
+                        <tr class="vendorTable" id="marketRow2">
+                            <td>Market 2</td>
+                            <td>1959 33rd Street</td>
+                            <td>Los Angeles</td>
+                            <td>California</td>
+                            <td>90001</td>
+                            <td>Monday</td>
+                            <td>11:00-20:00</td>
+                            <td><button class="marketButton" type="submit" id="market2Click" value="submit">Remove</button></td>
+                        </tr>
+                        <tr class="vendorTable" id="marketRow3">
+                            <td>Market 3</td>
+                            <td>1515 SW 15th Street</td>
+                            <td>Los Angeles</td>
+                            <td>California</td>
+                            <td>90001</td>
+                            <td>Sunday</td>
+                            <td>8:00-20:00</td>
+                            <td><button class="marketButton" type="submit" id="market3Click" value="submit">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
             <!-- VENDOR FORM -->
-            <form class="mt-3" action="" method="POST">
+            <form class="my-3" action="" method="POST">
                 <fieldset>
                     <legend>Find Vendor</legend>
                     <input id="marketID" type="" name="name" class="mb-1 text-input contact-input" placeholder="Business Name" style="width:100%">
@@ -157,8 +212,44 @@
                 </fieldset>
             </form>
 
-            
-            
+            <table class="vendorTable mb-5">
+                <thead class="vendorTable">
+                    <tr class="vendorTable">
+                        <th>Vendor Name</th>
+                        <th>Owner Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Market Location</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="vendorTable">
+                    <tr class="vendorTable" id="marketRow1">
+                        <td>L&R Mittens</td>
+                        <td>Jim Lark</td>
+                        <td>(555) 555-1234</td>
+                        <td>JLark@testemail.com</td>
+                        <td>Market 1</td>
+                        <td><button class="marketButton" type="submit" id="market1Click" value="subit">Remove</button></td>
+                    </tr>
+                    <tr class="vendorTable" id="marketRow2">
+                        <td>T&Y Bakery</td>
+                        <td>Jane Smith</td>
+                        <td>(555) 555-4321</td>
+                        <td>SmithJane@testemail.com</td>
+                        <td>Market 3</td>
+                        <td><button class="marketButton" type="submit" id="market2Click" value="submit">Remove</button></td>
+                    </tr>
+                    <tr class="vendorTable" id="marketRow3">
+                        <td>Huntington's Produce</td>
+                        <td>Carl Thompson</td>
+                        <td>(555) 555-9876</td>
+                        <td>ThompsonSon@testemail.com</td>
+                        <td>Market 1</td>
+                        <td><button class="marketButton" type="submit" id="market3Click" value="submit">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
             </div>
 	</body>
 
