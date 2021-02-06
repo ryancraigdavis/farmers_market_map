@@ -66,10 +66,28 @@
               <br>
               <input id="vendorID" type="" name="vendor" class="mb-1 text-input contact-input" placeholder="Vendor Search" style="width:95%">
               <br>
-              <input id="vendorID" type="" name="vendor" class="mb-1 text-input contact-input" placeholder="Services" style="width:95%">
+              <input id="Keywords" type="" name="vendor" class="mb-1 text-input contact-input" placeholder="Keywords" style="width:95%">
               <br>
-              <input id="vendorID" type="" name="vendor" class="mb-1 text-input contact-input" placeholder="Keywords" style="width:95%">
-              <br>
+              <a class="nav-link dropdown-toggle py-0 pl-1" href="#" id="timeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Services
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="wifi">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Wifi
+                  </label>
+                </a></li>
+                <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="water">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Water
+                  </label>
+                </a></li>
+                <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="bathrooms">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Bathrooms
+                  </label>
+                </a></li>
+              </ul>
               <a class="nav-link dropdown-toggle py-0 pl-1" href="#" id="daysDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Days</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -112,19 +130,22 @@
                   <a class="nav-link dropdown-toggle py-0 pl-1" href="#" id="timeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Hours
                   </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item">
-                    <b>00:00</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="50" data-slider-max="2350" data-slider-step="50" data-slider-value="[800,1400]"/> <b>23:50</b>
-                  </a></li>
-                </ul>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item">
+                      <b>00:00</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="50" data-slider-max="2350" data-slider-step="50" data-slider-value="[800,1400]"/> <b>23:50</b>
+                    </a></li>
+                  </ul>
             <!-- <div class="btn-class text-center my-2">
                 <button class="searchButton" type="submit" id="buttonClick" value="submit">Search</button>
             </div> -->
             </div>
           </form>
           <div class="btn-class text-center my-2">
+            <button class="searchButton" type="submit" id="applySubmit" value="apply">Apply Filters</button>
+          </div>
+          <div class="btn-class text-center my-2">
             <button class="searchButton" type="submit" id="searchSubmit" value="submit">Search</button>
-           </div>
+          </div>
            
           <h3 id=results></h3>
           <br>
