@@ -3,8 +3,9 @@
 // Initialize and add the map
 let map, infoWindow, geocoder;
 
-// Submit button for changing the map location
-var zipcodeButton = document.getElementById("zipSearch")
+// Submit button for changing the map location and the fields associated
+var searchButton = document.getElementById('searchSubmit');
+console.log(typeof address)
 
 // Server location address
 var serverUrl = 'http://localhost:1359';
@@ -54,7 +55,6 @@ function placeMarkets(){
 };
 
 function initMap() {
-	console.log('test')
 	geocoder = new google.maps.Geocoder();
 	map = new google.maps.Map(document.getElementById("map"), {
 		center: { lat: 34.052235, lng: -118.243683 },
@@ -71,12 +71,10 @@ function initMap() {
 	// zipcodeButton.textContent = "Submit";
 	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(zipcodeInput);
 	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(zipcodeButton);
-	var mapHtml = document.getElementById('mapSearch');
-    mapHtml.innerHTML = "<input class='form-control me-2' type='search' id='addressInput' placeholder='Address, City, or Zip' aria-label='Search'><button class='btn btn-outline-success' id='zipSearch'>Search</button>"
-    var zipcodeButton = document.getElementById('zipSearch');
-	var address = document.getElementById('addressInput').value;
-	zipcodeButton.addEventListener("click", () => {
+	searchButton.addEventListener("click", () => {
+		var address = document.getElementById('addressID').value.toString();
 		geocoder.geocode( { 'address': address}, function(results, status) {
+			console.log(results);
 			if (status == 'OK') {
 				console.log(address)
 				map.setCenter(results[0].geometry.location);
@@ -101,7 +99,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 // DISPLAY TESTING ONLY
-document.getElementById("displayClick").addEventListener("click", displayResults);
+document.getElementById("searchButton").addEventListener("click", displayResults);
 
 function displayResults() {
   document.getElementById("results").innerHTML = "Results";
