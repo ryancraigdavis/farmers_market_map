@@ -8,6 +8,8 @@ const mysql = require('mysql');
 const util = require('util'); // Needed in order to use await/async with pool connections for mysql
 
 // MySQL pool connections
+// https://www.serverkaka.com/2018/09/connect-aws-rds-mysql-instance-with-phpmyadmin.html
+// For when we switch to AWS RDS
 const pool = mysql.createPool({
   	connectionLimit  : 10,
   	host  : 'classmysql.engr.oregonstate.edu',
@@ -59,6 +61,7 @@ app.use(function(req,res,next) {
 // API's
 app.use("/api/sites", require("./routes/api/sites"));
 app.use("/api/locations", require("./routes/api/locations"));
+app.use("/api/updateFilters", require("./routes/api/updateFilters"));
 
 // Run Server
 console.log('Express started on port 1359 🔹; press Ctrl-C to terminate.');

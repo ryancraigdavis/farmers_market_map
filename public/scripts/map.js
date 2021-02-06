@@ -2,14 +2,16 @@
 // https://developers.google.com/maps/documentation/javascript/adding-a-google-map#maps_add_map-typescript
 // Initialize and add the map
 let map, infoWindow, geocoder;
+let markers = [];
 
 // Submit button for changing the map location and the fields associated
 var searchButton = document.getElementById('searchSubmit');
-console.log(typeof address)
 
 // Server location address
 var serverUrl = 'http://localhost:1359';
 
+
+// Initial get when the page is loaded
 function placeMarkets(){
 
 	 // Creates the response
@@ -23,7 +25,6 @@ function placeMarkets(){
 
 			// SQL Data returned from server which is added to the map
 			var markets = JSON.parse(req.responseText);
-			console.log(markets);
 		  	for (let i = 0; i < markets.length; i++) {
 		    	const latLng = new google.maps.LatLng(parseFloat(markets[i].address.Lat),parseFloat(markets[i].address.Lng));
 		    	const contentHtml = '<div class="infoWindow"><h3>' + markets[i].name + 
@@ -41,6 +42,7 @@ function placeMarkets(){
 				marker.addListener("click", () => {
 					infowindow.open(map, marker);
 				});
+				markers.push(marker);
 			}
 
 		 } else {
@@ -54,6 +56,95 @@ function placeMarkets(){
  req.send(null);
 };
 
+// Called when new filters are applied
+function updateMarkets(){
+	event.preventDefault();
+
+	var filterObject = new Object();
+	var servicesObject = new Object();
+	var daysObject = new Object();
+	var hoursObject = new Object();
+
+
+	// Sends the filters to the server for a new set of pins
+	var wifi = document.getElementById('wifi');
+	var bathrooms = document.getElementById('bathrooms');
+	var water = document.getElementById('water');
+
+	servicesObject = {
+        "wifi": wifi.checked,
+        "bathrooms": bathrooms.checked,
+        "water": water.checked
+    };
+
+	var monday = document.getElementById('monday');
+	var tuesday = document.getElementById('tuesday');
+	var wednesday = document.getElementById('wednesday');
+	var thursday = document.getElementById('thursday');
+	var friday = document.getElementById('friday');
+	var saturday = document.getElementById('saturday');
+	var sunday = document.getElementById('sunday');
+
+	daysObject = {
+        "monday": monday.checked,
+        "tuesday": tuesday.checked,
+        "wednesday": wednesday.checked,
+        "thursday": thursday.checked,
+        "friday": friday.checked,
+        "saturday": saturday.checked,
+        "sunday": sunday.checked
+    };
+
+	var filterObject = new Object();
+    filterObject = {
+        "services": servicesObject,
+        "days": daysObject
+    };
+
+    // We need to reset the pins on the map
+    for (let i = 0; i < markers.length; i++) {
+    	markers[i].setMap(null);
+  	}
+  	markers = [];
+
+  	// Now we create the post request to put down new pins based on the filters
+    var req = new XMLHttpRequest();
+
+    req.open('POST', serverUrl+'/api/updateFilters/update_filters', true);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load',function(){
+      if(req.status >= 200 && req.status < 400){
+        
+			// SQL Data returned from server which is added to the map
+			var markets = JSON.parse(req.responseText);
+		  	for (let i = 0; i < markets.length; i++) {
+		    	const latLng = new google.maps.LatLng(parseFloat(markets[i].address.Lat),parseFloat(markets[i].address.Lng));
+		    	const contentHtml = '<div class="infoWindow"><h3>' + markets[i].name + 
+                            '</h3><p>Location: ' + markets[i].address.Street + ' ' + markets[i].address.City + 
+                            ', '+ markets[i].address.State + '</p><p>Times: ' + markets[i].start + ' to ' + 
+                            markets[i].end + '</p></div>'
+		    	const infowindow = new google.maps.InfoWindow({
+					content: contentHtml,
+				});
+		    	const marker = new google.maps.Marker({
+		      		position: latLng,
+		      		map: map,
+		      		title: markets[i].name,
+		    	});
+				marker.addListener("click", () => {
+					infowindow.open(map, marker);
+				});
+				markers.push(marker);
+			}
+
+      } else {
+        console.log("Error in network request: " + req.statusText);
+      }});
+
+    req.send(JSON.stringify(filterObject));
+
+};
+
 function initMap() {
 	geocoder = new google.maps.Geocoder();
 	map = new google.maps.Map(document.getElementById("map"), {
@@ -62,15 +153,6 @@ function initMap() {
 	});
 	infoWindow = new google.maps.InfoWindow();
 
-	// Go to specified zip code
-	// https://developers.google.com/maps/documentation/javascript/geocoding
-	// const zipcodeInput = document.createElement("input");
-	// zipcodeInput.setAttribute("id", "addressInput");
-	// zipcodeInput.setAttribute("placeholder", "Address, City, or Zip");
-	// const zipcodeButton = document.createElement("button");
-	// zipcodeButton.textContent = "Submit";
-	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(zipcodeInput);
-	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(zipcodeButton);
 	searchButton.addEventListener("click", () => {
 		var address = document.getElementById('addressID').value.toString();
 		geocoder.geocode( { 'address': address}, function(results, status) {
@@ -99,12 +181,4 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 // DISPLAY TESTING ONLY
-document.getElementById("searchButton").addEventListener("click", displayResults);
-
-function displayResults() {
-  document.getElementById("results").innerHTML = "Results";
-  document.getElementById("vendor1").innerHTML = "9149 S Sepulveda Blvd: Sunday, Wednesday, Friday";
-  document.getElementById("vendor2").innerHTML = "R922 Gayley Ave: Saturday, Sunday";
-  document.getElementById("vendor3").innerHTML = "9245 Venice Blvd: Monday, Wednesday, Friday";
-  document.getElementById("vendor4").innerHTML = "R3640 Cahuenga Blvd: Tuesday";
-}
+document.getElementById("applySubmit").addEventListener("click", updateMarkets);
