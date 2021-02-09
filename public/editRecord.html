@@ -249,7 +249,55 @@
                     </tr>
                 </tbody>
             </table>
-            
+
+            <!-- SEVICES FORM -->
+            <form class="my-3" action="" method="POST">
+                <fieldset>
+                    <legend>Find Service</legend>
+                    <input id="serviceName" type="" name="name" class="mb-1 text-input contact-input" placeholder="Service Name" style="width:100%">
+                    <br>
+                    <input id="serviceQuality" type="" name="street" class="mb-1 text-input contact-input" placeholder="Service Quality" style="width:100%">
+                    <br>
+                    <input type="submit" value="Search Vendors">
+                </fieldset>
+            </form>
+
+            <table class="serviceTable mb-5">
+                <thead class="serviceTable">
+                    <tr class="serviceTable">
+                        <th>Service Name</th>
+                        <th>Service Quality</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="serviceTable">
+                    <tr class="serviceTable" id="marketRow1">
+                        <td>WiFi</td>
+                        <td>4</td>
+                        <td><button class="marketButton" type="submit" id="market1Click" value="subit">Edit</button></td>
+                    </tr>
+                    <tr class="serviceTable" id="marketRow2">
+                        <td>Restrooms</td>
+                        <td>3</td>
+                        <td><button class="marketButton" type="submit" id="market2Click" value="submit">Edit</button></td>
+                    </tr>
+                    <tr class="serviceTable" id="marketRow2">
+                        <td>Water</td>
+                        <td>5</td>
+                        <td><button class="marketButton" type="submit" id="market2Click" value="submit">Edit</button></td>
+                    </tr>
+                    <tr class="serviceTable" id="marketRow2">
+                        <td>Public Transit</td>
+                        <td>4</td>
+                        <td><button class="marketButton" type="submit" id="market2Click" value="submit">Edit</button></td>
+                    </tr>
+                    <tr class="serviceTable" id="marketRow2">
+                        <td>Parking</td>
+                        <td>2</td>
+                        <td><button class="marketButton" type="submit" id="market2Click" value="submit">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
             
             </div>
 	</body>
