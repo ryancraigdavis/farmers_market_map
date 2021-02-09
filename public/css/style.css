@@ -105,6 +105,12 @@ h3 {
   border-collapse: collapse;
 }
 
+.serviceTable {
+  border: 1px solid black;
+  width: 100%;
+  border-collapse: collapse;
+}
+
 .marketButton {
   border-radius: 5px;
   width: 75px;
