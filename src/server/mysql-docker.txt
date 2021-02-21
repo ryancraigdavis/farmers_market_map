@@ -1,0 +1,21 @@
+Runs inside a dockerized container, use the following commands
+Set-up: 
+
+mkdir /Users/[User]/Develop
+
+mkdir /Users/[User]/Develop/mysql_data
+
+mkdir /Users/[User]/Develop/mysql_data/8.0
+
+docker network create dev-network
+
+docker run --restart always --name mysql8.0 --net dev-network -v /Users/[User]/Develop/mysql_data/8.0:/var/lib/mysql -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=d@taB0ss mysql:8.0
+
+docker pull phpmyadmin/phpmyadmin:latest
+
+docker run --name my-own-phpmyadmin -d --link my-own-mysql:db -p 8081:80 phpmyadmin/phpmyadmin
+
+Getting into the bash: 'docker exec -it mysql8.0 bash' (type 'exit' to leave the bash)
+Connecting to the MySql instance in the bash: 'mysql -u root -p'
+
+https://medium.com/@crmcmullen/how-to-run-mysql-in-a-docker-container-on-macos-with-persistent-local-data-58b89aec496a

@@ -1,5 +1,6 @@
 // Farmers Market App
 // Express - MySQL 
+require('dotenv').config({ path: '../../.env' })
 const express = require('express');
 const http = require('http'); // Because we aren't using a template engine - to serve static html files
 const app = express();
@@ -8,14 +9,12 @@ const mysql = require('mysql');
 const util = require('util'); // Needed in order to use await/async with pool connections for mysql
 
 // MySQL pool connections
-// https://www.serverkaka.com/2018/09/connect-aws-rds-mysql-instance-with-phpmyadmin.html
-// For when we switch to AWS RDS
 const pool = mysql.createPool({
   	connectionLimit  : 10,
-  	host  : 'classmysql.engr.oregonstate.edu',
-  	user  : 'cs340_daviryan',
-  	password: 'd@taB0ss',
-  	database: 'cs340_daviryan'
+  	host  : process.env.DB_HOST,
+  	user  : process.env.DB_USER,
+  	password: process.env.DB_PASS,
+  	database: process.env.DB_NAME
 });
 
 // Ping database to check for common exception errors.
@@ -46,7 +45,7 @@ pool.query = util.promisify(pool.query)
 module.exports.pool = pool;
 
 // All front end files are found in the /public folder
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/client'));
 
 // Setting headers and initializing body parser
 app.use(bodyParser.urlencoded({ extended: false }));
