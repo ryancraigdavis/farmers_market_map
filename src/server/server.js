@@ -7,6 +7,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const util = require('util'); // Needed in order to use await/async with pool connections for mysql
+const createTables = require('./mysql/create-tables');
+const createDummy = require('./mysql/dummy-data');
 
 // MySQL pool connections
 const pool = mysql.createPool({
@@ -43,6 +45,9 @@ pool.query = util.promisify(pool.query)
 // https://stackoverflow.com/questions/20712712/how-to-pass-variable-from-app-js-to-routes-index-js
 // Export the pool variable
 module.exports.pool = pool;
+
+// Create tables and dummy data
+createTables.createTables();
 
 // All front end files are found in the /public folder
 app.use(express.static(__dirname + '/client'));
