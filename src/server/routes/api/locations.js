@@ -13,26 +13,26 @@ router.get("/get_markets", async (req, res) => {
 
   	// Need to fix for await
   	// DB Query returning the farmers market locations
-  	pool.query('SELECT * FROM FarmersMarket', async function(err, rows, fields) {
+  	pool.query('SELECT * FROM FarmersMarkets', async function(err, rows, fields) {
   		for (var i = 0; i < rows.length; i++) {
 
   			// Return farmers market obj w/o address
   			var farmerReturnObject = new Object();
   			farmerReturnObject = {
-          	"name": rows[i].Name,
+          	"name": rows[i].name,
           	"address": null,
-          	"start": rows[i].StartTime,
-          	"end": rows[i].EndTime,
-          	"monday": rows[i].Monday,
-          	"tuesday": rows[i].Tuesday,
-          	"wednesday": rows[i].Wednesday,
-          	"thursday": rows[i].Thursday,
-          	"friday": rows[i].Friday,
-          	"saturday": rows[i].Saturday,
-          	"sunday": rows[i].Sunday
+          	"start": rows[i].startTime,
+          	"end": rows[i].endTime,
+          	"monday": rows[i].monday,
+          	"tuesday": rows[i].tuesday,
+          	"wednesday": rows[i].wednesday,
+          	"thursday": rows[i].thursday,
+          	"friday": rows[i].friday,
+          	"saturday": rows[i].saturday,
+          	"sunday": rows[i].sunday
         };
 
-			const ret_address = await pool.query('SELECT * FROM Addresses WHERE AddressID = ?', [rows[i].AddressID]);
+			const ret_address = await pool.query('SELECT * FROM Addresses WHERE AddressID = ?', [rows[i].addressID]);
 			farmerReturnObject.address = ret_address[0];
         // Push to the array
         returnArray.push(farmerReturnObject);

@@ -10,6 +10,9 @@ var searchButton = document.getElementById('searchSubmit');
 // Server location address
 var serverUrl = 'http://localhost:1359';
 
+function loadVendors(){
+	$('#vendorModal').modal('show');
+}
 
 // Initial get when the page is loaded
 function placeMarkets(){
@@ -26,14 +29,17 @@ function placeMarkets(){
 			// SQL Data returned from server which is added to the map
 			var markets = JSON.parse(req.responseText);
 		  	for (let i = 0; i < markets.length; i++) {
-		    	const latLng = new google.maps.LatLng(parseFloat(markets[i].address.Lat),parseFloat(markets[i].address.Lng));
+		    	const latLng = new google.maps.LatLng(parseFloat(markets[i].address.lat),parseFloat(markets[i].address.lng));
+		    	console.log(latLng);
 		    	const contentHtml = '<div class="infoWindow"><h3>' + markets[i].name + 
-                            '</h3><p>Location: ' + markets[i].address.Street + ' ' + markets[i].address.City + 
-                            ', '+ markets[i].address.State + '</p><p>Times: ' + markets[i].start + ' to ' + 
+                            '</h3><p>Location: ' + markets[i].address.street + ' ' + markets[i].address.city + 
+                            ', '+ markets[i].address.state + '</p><p>Times: ' + markets[i].start + ' to ' + 
                             markets[i].end + '</p></div>'
+
 		    	const infowindow = new google.maps.InfoWindow({
 					content: contentHtml,
 				});
+
 		    	const marker = new google.maps.Marker({
 		      		position: latLng,
 		      		map: map,
@@ -42,6 +48,7 @@ function placeMarkets(){
 				marker.addListener("click", () => {
 					infowindow.open(map, marker);
 				});
+
 				markers.push(marker);
 			}
 
@@ -118,10 +125,10 @@ function updateMarkets(){
 			// SQL Data returned from server which is added to the map
 			var markets = JSON.parse(req.responseText);
 		  	for (let i = 0; i < markets.length; i++) {
-		    	const latLng = new google.maps.LatLng(parseFloat(markets[i].address.Lat),parseFloat(markets[i].address.Lng));
+		    	const latLng = new google.maps.LatLng(parseFloat(markets[i].address.lat),parseFloat(markets[i].address.lng));
 		    	const contentHtml = '<div class="infoWindow"><h3>' + markets[i].name + 
-                            '</h3><p>Location: ' + markets[i].address.Street + ' ' + markets[i].address.City + 
-                            ', '+ markets[i].address.State + '</p><p>Times: ' + markets[i].start + ' to ' + 
+                            '</h3><p>Location: ' + markets[i].address.street + ' ' + markets[i].address.city + 
+                            ', '+ markets[i].address.state + '</p><p>Times: ' + markets[i].start + ' to ' + 
                             markets[i].end + '</p></div>'
 		    	const infowindow = new google.maps.InfoWindow({
 					content: contentHtml,
