@@ -115,3 +115,22 @@ h3 {
   border-radius: 5px;
   width: 75px;
 }
+
+/*Modal Dynamic Sizing
+https://stackoverflow.com/questions/34307647/bootstrap-modal-dynamic-width*/
+body .modal-dialog {
+  max-width: 100%;
+  width: auto !important;
+  display: inline-block;
+}
+
+.modal {
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-open .modal {
+   z-index: 1050;
+}

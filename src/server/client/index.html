@@ -34,24 +34,29 @@
               </li>
             
               <li class="nav-item">
-                <a href="addRecord.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus-square" class="svg-inline--fa fa-plus-square fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-32 252c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92H92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"></path></svg>
-                <span class="link-text">Add</span>
+                <span class="link-text">Markets</span>
                 </a>
               </li>
             
               <li class="nav-item">
-                <a href="removeRecord.html" class="nav-link">
+                <a href="#" class="nav-link" data-toggle="modal" data-target="#vendorModal" onclick="getVendors()">
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus-square" class="svg-inline--fa fa-minus-square fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM92 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H92z"></path></svg>
-                <span class="link-text">Remove</span>
+                <span class="link-text">Vendors</span>
                 </a>
               </li>
             
               <li class="nav-item">
-                <a href="editRecord.html" class="nav-link">
+                <a href="#" class="nav-link" role="button" id="servicesType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pencil-alt" class="svg-inline--fa fa-pencil-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"></path></svg>
-                <span class="link-text">Edit</span>
+                <span class="link-text">Services</span>
                 </a>
+                <div class="dropdown-menu" aria-labelledby="servicesType">
+                  <a class="dropdown-item" href="#">Add</a>
+                  <a class="dropdown-item" href="#">Update</a>
+                  <a class="dropdown-item" href="#">Delete</a>
+                </div>
               </li>            
             </ul>
           </nav>
@@ -168,8 +173,44 @@
       </div>
     </div>
 
+    <!-- VendorList Modal -->
+    <div class="modal fade" id="vendorListModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Vendor List</h5>
+            <button type="button" class="close" onclick="$('#vendorListModal').modal('hide')" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table id="vendorListTable">
+              <thead>
+                <tr>
+                  <th>Business Name</th>
+                  <th>Owner Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Description</th>
+                  <th>Location</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody id="vendorListBody">
+              </tbody>
+            </table>
+            <H4>Add Vendor to Market</H4>
+            <select id="vendorListInsert" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="setVendor(this)"></select>
+            <input type="text" id="vendorLocation">
+            <button onclick="addVendorList()">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Vendor Modal -->
-    <div class="modal fade bd-example-modal-lg" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal fade" id="vendorModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -189,7 +230,7 @@
                   <th>Description</th>
                   <th>Update</th>
                   <th>Delete</th>
-                  <th><button>Insert</button></th>
+                  <th><button onclick="addVendor()">Insert</button></th>
                 </tr>
               </thead>
               <tbody id="vendorBody">
@@ -199,8 +240,10 @@
         </div>
       </div>
     </div>
-	</body>
 
+	</body>
+    <script src="scripts/vendorActions.js"></script>
+    <script src="scripts/vendorListActions.js"></script>
   	<script src="scripts/map.js"></script>
     <script src="scripts/time-picker.js"></script>
 </html>

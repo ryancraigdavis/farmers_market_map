@@ -50,7 +50,7 @@ exports.createTables = async function(){
 		"location varchar(255) NOT NULL," +
 		"PRIMARY KEY (vendorListID)," +
 		"FOREIGN KEY (vendorID) REFERENCES Vendors(vendorID)," +
-		"FOREIGN KEY (marketID) REFERENCES FarmersMarkets(marketID))";
+		"FOREIGN KEY (marketID) REFERENCES FarmersMarkets(marketID) ON DELETE CASCADE)";
 
 	const createServiceLists = "CREATE TABLE IF NOT EXISTS ServiceLists (" +
 		"serviceListID int(11) NOT NULL AUTO_INCREMENT," +
@@ -59,7 +59,7 @@ exports.createTables = async function(){
 		"location varchar(255) NOT NULL," +
 		"PRIMARY KEY (serviceListID)," +
 		"FOREIGN KEY (serviceID) REFERENCES Services(serviceID)," +
-		"FOREIGN KEY (marketID) REFERENCES FarmersMarkets(marketID))";
+		"FOREIGN KEY (marketID) REFERENCES FarmersMarkets(marketID) ON DELETE CASCADE)";
 
 	pool.query(createAddress, function(err, result){
     if (err) {
