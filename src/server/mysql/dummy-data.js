@@ -1,7 +1,7 @@
 // Create the dummy data
 exports.createDummyData = async function(){
 	const mysql = require('mysql');
-	const server = require('../../server');
+	const server = require('../server');
 	const pool = server.pool;
 
 	const vendor1 = "INSERT INTO `Vendors` (`businessName`, `ownerName`, `phone`, `email`, `description`)" + 

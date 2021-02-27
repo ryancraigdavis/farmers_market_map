@@ -19,6 +19,7 @@ router.get("/get_markets", async (req, res) => {
   			// Return farmers market obj w/o address
   			var farmerReturnObject = new Object();
   			farmerReturnObject = {
+            "marketID": rows[i].marketID,
           	"name": rows[i].name,
           	"address": null,
           	"start": rows[i].startTime,
