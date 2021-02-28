@@ -50,7 +50,7 @@ function placeMarkets(){
 				services.type = 'button';
                 services.value = 'See Services'
 				google.maps.event.addDomListener(services, 'click', function () {
-                    loadServicesList(markets[i]);
+                    loadServiceList(markets[i]);
                  })
 
 		    	const infowindow = new google.maps.InfoWindow({

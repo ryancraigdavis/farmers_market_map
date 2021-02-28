@@ -67,6 +67,7 @@ app.use("/api/sites", require("./routes/api/sites"));
 app.use("/api/locations", require("./routes/api/locations"));
 app.use("/api/updateFilters", require("./routes/api/updateFilters"));
 app.use("/api/vendors", require("./routes/api/vendors"));
+app.use("/api/services", require("./routes/api/services"));
 
 // Run Server
 console.log('Express started on port 1359 🔹; press Ctrl-C to terminate.');
