@@ -85,21 +85,8 @@ function updateMarkets(){
 	event.preventDefault();
 
 	var filterObject = new Object();
-	var servicesObject = new Object();
 	var daysObject = new Object();
 	var hoursObject = new Object();
-
-
-	// Sends the filters to the server for a new set of pins
-	var wifi = document.getElementById('wifi');
-	var bathrooms = document.getElementById('bathrooms');
-	var water = document.getElementById('water');
-
-	servicesObject = {
-        "wifi": wifi.checked,
-        "bathrooms": bathrooms.checked,
-        "water": water.checked
-    };
 
 	var monday = document.getElementById('monday');
 	var tuesday = document.getElementById('tuesday');
@@ -121,7 +108,6 @@ function updateMarkets(){
 
 	var filterObject = new Object();
     filterObject = {
-        "services": servicesObject,
         "days": daysObject
     };
 
@@ -143,13 +129,33 @@ function updateMarkets(){
 			var markets = JSON.parse(req.responseText);
 		  	for (let i = 0; i < markets.length; i++) {
 		    	const latLng = new google.maps.LatLng(parseFloat(markets[i].address.lat),parseFloat(markets[i].address.lng));
-		    	const contentHtml = '<div class="infoWindow"><h3>' + markets[i].name + 
-                            '</h3><p>Location: ' + markets[i].address.street + ' ' + markets[i].address.city + 
-                            ', '+ markets[i].address.state + '</p><p>Times: ' + markets[i].start + ' to ' + 
-                            markets[i].end + '</p></div>'
+		    	
+		    	// Infowindow content
+                var content = document.createElement('div'),vendors,services,inner;
+                inner = content.appendChild(document.createElement('div'));
+                inner.innerHTML = '<div class="infoWindow"><h3>' + markets[i].name + 
+                    '</h3><p>Location: ' + markets[i].address.street + ' ' + markets[i].address.city + 
+                    ', '+ markets[i].address.state + '</p><p>Times: ' + markets[i].start + ' to ' + 
+                    markets[i].end + '</p></div>'
+
+		    	vendors = content.appendChild(document.createElement('input'));
+				vendors.type = 'button';
+                vendors.value = 'See Vendors'
+				google.maps.event.addDomListener(vendors, 'click', function () {
+                    loadVendorList(markets[i]);
+                 })
+
+				services = content.appendChild(document.createElement('input'));
+				services.type = 'button';
+                services.value = 'See Services'
+				google.maps.event.addDomListener(services, 'click', function () {
+                    loadServiceList(markets[i]);
+                 })
+
 		    	const infowindow = new google.maps.InfoWindow({
-					content: contentHtml,
+					content: content,
 				});
+
 		    	const marker = new google.maps.Marker({
 		      		position: latLng,
 		      		map: map,
@@ -158,6 +164,7 @@ function updateMarkets(){
 				marker.addListener("click", () => {
 					infowindow.open(map, marker);
 				});
+
 				markers.push(marker);
 			}
 

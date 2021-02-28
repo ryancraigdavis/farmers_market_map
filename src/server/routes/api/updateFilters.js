@@ -9,30 +9,42 @@ router.post("/update_filters", async (req, res, next) => {
 
   try {
   	// Return array that needs to be filled with the objects being called from the DB
-  	returnArray = [];
 
+  	returnArray = [];
+    const updateDays = 'SELECT * FROM FarmersMarkets INNER JOIN Addresses ON FarmersMarkets.addressID = Addresses.addressID WHERE monday = ? AND tuesday = ? AND wednesday = ? AND thursday = ? ' +
+      ' AND friday = ? AND saturday = ? AND sunday = ?'
   	//DB Query returning the farmers market locations updated by the filters
-  	pool.query('SELECT * FROM FarmersMarket WHERE wednesday = ' + req.body.days.wednesday +'', async function(err, rows, fields) {
+  	pool.query(updateDays,[req.body.days.monday, req.body.days.tuesday, req.body.days.wednesday, req.body.days.thursday, req.body.days.friday, 
+      req.body.days.saturday, req.body.days.sunday], async function(err, rows, fields) {
   		for (var i = 0; i < rows.length; i++) {
+
+        var addressReturnObject = new Object();
+        addressReturnObject = {
+          "addressID": rows[i].addressID,
+          "street": rows[i].street,
+          "city": rows[i].city,
+          "state": rows[i].state,
+          "zip": rows[i].zip,
+          "lat": rows[i].lat,
+          "lng": rows[i].lng
+        }
 
   			// Return farmers market obj w/o address
   			var farmerReturnObject = new Object();
   			farmerReturnObject = {
-          	"name": rows[i].Name,
-          	"address": null,
-          	"start": rows[i].StartTime,
-          	"end": rows[i].EndTime,
-          	"monday": rows[i].Monday,
-          	"tuesday": rows[i].Tuesday,
-          	"wednesday": rows[i].Wednesday,
-          	"thursday": rows[i].Thursday,
-          	"friday": rows[i].Friday,
-          	"saturday": rows[i].Saturday,
-          	"sunday": rows[i].Sunday
+          	"name": rows[i].name,
+          	"address": addressReturnObject,
+          	"start": rows[i].startTime,
+          	"end": rows[i].endTime,
+          	"monday": rows[i].monday,
+          	"tuesday": rows[i].tuesday,
+          	"wednesday": rows[i].wednesday,
+          	"thursday": rows[i].thursday,
+          	"friday": rows[i].friday,
+          	"saturday": rows[i].saturday,
+          	"sunday": rows[i].sunday
         };
 
-			const ret_address = await pool.query('SELECT * FROM Addresses WHERE AddressID = ?', [rows[i].AddressID]);
-			farmerReturnObject.address = ret_address[0];
         // Push to the array
         returnArray.push(farmerReturnObject);
 
