@@ -47,7 +47,7 @@ pool.query = util.promisify(pool.query)
 module.exports.pool = pool;
 
 // Create tables and dummy data
-createTables.createTables();
+// createTables.createTables();
 
 // All front end files are found in the /public folder
 app.use(express.static(__dirname + '/client'));
