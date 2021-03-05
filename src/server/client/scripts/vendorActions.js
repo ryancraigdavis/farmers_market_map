@@ -73,8 +73,10 @@ function addVendor(){
 	cell5Add.innerHTML = '<input type="text" id="add5">'
 	var cell6AddName = document.createElement('button');
 	cell6AddName.innerHTML = "Submit";
+  cell6AddName.classList.add('submitRow')
 	var cell7AddName = document.createElement('button');
-	cell7AddName.innerHTML = "Cancel";
+	cell7AddName.innerHTML = "Delete";
+  cell7AddName.classList.add('deleteRow')
 
 	cell6AddName.onclick = (function(){
         return function(){

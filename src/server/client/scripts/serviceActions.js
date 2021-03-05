@@ -65,10 +65,12 @@ function addService(){
 
 	cell1Add.innerHTML = '<input type="text" id="add1">'
 	cell2Add.innerHTML = '<input type="text" id="add2">'
-	var cell3AddName = document.createElement('button');
+  var cell3AddName = document.createElement('button');
 	cell3AddName.innerHTML = "Submit";
-	var cell4AddName = document.createElement('button');
-	cell4AddName.innerHTML = "Cancel";
+  cell3AddName.classList.add('submitRow')
+  var cell4AddName = document.createElement('button');
+	cell4AddName.innerHTML = "Delete";
+  cell4AddName.classList.add('deleteRow')
 
 	cell3AddName.onclick = (function(){
         return function(){
