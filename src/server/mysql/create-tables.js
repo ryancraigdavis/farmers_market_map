@@ -1,7 +1,7 @@
 // Create the Mysql Tables
 exports.createTables = async function(){
 	const mysql = require('mysql');
-	const server = require('../../server');
+	const server = require('../server');
 	const pool = server.pool;
 
 	const createAddress = "CREATE TABLE IF NOT EXISTS Addresses (" +
