@@ -5,6 +5,11 @@
   --bg-secondary: #141418;
 }
 
+#leftBackground {
+  /* background-color: #eeeeee; */
+  background-color: white;
+}
+
 html,
 body {
   padding: 0;
@@ -35,12 +40,49 @@ h3 {
 }
 
 .leftside {
-  overflow: scroll;
+  overflow: hidden;
+  border-right: 4px solid;
+  /* border-image-source: linear-gradient(
+    to bottom,
+    #23232e,
+    #37394c,
+    #4a506d,
+    #5d6990,
+    #6f83b4,
+    #7184bc,
+    #7585c4,
+    #7985cb,
+    #736ab4,
+    #6e4f9b,
+    #69327f,
+    #620a62
+  ); */
+  border-image-source: linear-gradient(
+    to bottom,
+    #23232e,
+    #3a495d,
+    #49748c,
+    #55a3b7,
+    #6bd4d8
+  );
+  border-image-slice: 1;
 }
 
 .searchButton {
+  margin-top: 5px;
   border-radius: 5px;
-  width: 150px;
+  width: 400px;
+  height: 35px;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.75px;
+  background-color: #913535;
+}
+
+.searchButton:hover {
+  background-color: #23232e;
 }
 
 .dropdown-menu {
@@ -122,6 +164,17 @@ body .modal-dialog {
   max-width: 100%;
   width: auto !important;
   display: inline-block;
+  margin-top: 75px;
+}
+
+#modal-dialog-vendor {
+  width: 1175px !important;
+  margin-left: 110px;
+}
+
+#modal-dialog-service {
+  width: 575px !important;
+  margin-left: 410px;
 }
 
 .modal {
@@ -132,5 +185,56 @@ body .modal-dialog {
 }
 
 .modal-open .modal {
-   z-index: 1050;
+  z-index: 1050;
+}
+
+#serviceTable th,
+#vendorTable th {
+  width: 150px;
+  /* border-bottom: 1px solid black; */
+  border-collapse: collapse;
+}
+
+.modal-title {
+  font-family: "Fredericka the Great", cursive;
+  display: flex;
+  justify-content: left;
+  padding-left: 3px;
+  font-size: 220%;
+}
+
+.insertButton,
+.submitRow,
+.deleteRow {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.75px;
+  border-radius: 5px;
+  border: none;
+}
+
+.submitRow {
+  background-color: rgb(18, 102, 18);
+}
+
+.deleteRow {
+  background-color: #913535;
+}
+
+.insertButton {
+  background-color: #393e46;
+  width: 145px;
+}
+
+.deleteRow:hover {
+  background-color: #471c1c;
+}
+
+.submitRow:hover {
+  background-color: rgb(20, 63, 20);
+}
+
+.insertButton:hover {
+  background-color: #23232e;
 }
