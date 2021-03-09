@@ -13,7 +13,7 @@ const createDummy = require('./mysql/dummy-data');
 // MySQL pool connections
 const pool = mysql.createPool({
   	connectionLimit  : 10,
-  	host  : 'http://66.42.74.237/',
+  	host  : process.env.DB_HOST,
   	user  : process.env.DB_USER,
   	password: process.env.DB_PASS,
   	database: process.env.DB_NAME
@@ -48,7 +48,7 @@ pool.query = util.promisify(pool.query)
 module.exports.pool = pool;
 
 // Create tables and dummy data
-// createTables.createTables();
+createTables.createTables();
 
 // All front end files are found in the /public folder
 app.use(express.static(__dirname + '/client'));
@@ -69,6 +69,7 @@ app.use("/api/locations", require("./routes/api/locations"));
 app.use("/api/updateFilters", require("./routes/api/updateFilters"));
 app.use("/api/vendors", require("./routes/api/vendors"));
 app.use("/api/services", require("./routes/api/services"));
+app.use("/api/markets", require("./routes/api/markets"));
 
 // Run Server
 console.log('Express started on port 1359 🔹; press Ctrl-C to terminate.');

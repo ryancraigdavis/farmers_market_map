@@ -3,7 +3,7 @@ function insertServiceToDB(service){
 
 	var req = new XMLHttpRequest();
 
-    req.open('POST', 'http://66.42.74.237:1359/api/services/add_service', true);
+    req.open('POST', 'http://localhost:1359/api/services/add_service', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -22,7 +22,7 @@ function deleteService(service){
 
 	var req = new XMLHttpRequest();
 
-    req.open('DELETE', 'http://66.42.74.237:1359/api/services/delete_service', true);
+    req.open('DELETE', 'http://localhost:1359/api/services/delete_service', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -40,7 +40,7 @@ function updateService(service){
 
 	var req = new XMLHttpRequest();
 
-    req.open('PUT', 'http://66.42.74.237:1359/api/services/update_service', true);
+    req.open('PUT', 'http://localhost:1359/api/services/update_service', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -95,7 +95,7 @@ function addService(){
     })();
 
     cell3Add.appendChild(cell3AddName);
-	  cell3Add.appendChild(cell4AddName);
+	  cell4Add.appendChild(cell4AddName);
 
 	  rowAdd.appendChild(cell1Add);
 	  rowAdd.appendChild(cell2Add);
@@ -110,7 +110,7 @@ function addService(){
 function getServices(){
     var req = new XMLHttpRequest();
 
-    req.open('GET', 'http://66.42.74.237:1359/api/services/get_services', true);
+    req.open('GET', 'http://localhost:1359/api/services/get_services', true);
     
     req.withCredentials = false;
 	req.onload = function (e) {

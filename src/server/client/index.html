@@ -34,7 +34,7 @@
               </li>
             
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" data-toggle="modal" data-target="#marketModal" onclick="getMarkets()">
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="city" class="svg-inline--fa fa-city fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M616 192H480V24c0-13.26-10.74-24-24-24H312c-13.26 0-24 10.74-24 24v72h-64V16c0-8.84-7.16-16-16-16h-16c-8.84 0-16 7.16-16 16v80h-64V16c0-8.84-7.16-16-16-16H80c-8.84 0-16 7.16-16 16v80H24c-13.26 0-24 10.74-24 24v360c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V216c0-13.26-10.75-24-24-24zM128 404c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12H76c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm128 192c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm160 96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12V76c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm160 288c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40zm0-96c0 6.63-5.37 12-12 12h-40c-6.63 0-12-5.37-12-12v-40c0-6.63 5.37-12 12-12h40c6.63 0 12 5.37 12 12v40z"></path></svg>
                 <span class="link-text">Markets</span>
                 </a>
@@ -144,6 +144,47 @@
         <!-- RIGHTSIDE COLUMN -->
         <div class="col-8 px-0 rightside">
             <div id="map" class="container-fluid my-auto "></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Markets Modal -->
+    <div class="modal fade" id="marketModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog" id="modal-dialog-market" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Market List</h5>
+            <button type="button" class="close" onclick="$('#marketModal').modal('hide')" aria-label="Close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table id="marketTable">
+              <thead>
+                <tr>
+                  <th>Market Name</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Zip Code</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thursday</th>
+                  <th>Friday</th>
+                  <th>Saturday</th>
+                  <th>Sunday</th>
+                  <!-- <th>Update</th>
+                  <th>Delete</th> -->
+                  <th colspan="2"><button class="insertButton" onclick="addMarket()">Insert</button></th>
+                </tr>
+              </thead>
+              <tbody id="marketBody">
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -279,6 +320,7 @@
     </div>
 
 	</body>
+    <script src="scripts/marketActions.js"></script>
     <script src="scripts/vendorActions.js"></script>
     <script src="scripts/vendorListActions.js"></script>
     <script src="scripts/serviceActions.js"></script>
