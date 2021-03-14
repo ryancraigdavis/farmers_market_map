@@ -213,3 +213,40 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 // DISPLAY TESTING ONLY
 document.getElementById("applySubmit").addEventListener("click", updateMarkets);
+
+
+// Time Documentation: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time#value
+
+var startTimeListener = document.getElementById("startTime");
+var endTimeListener = document.getElementById("endTime");
+
+startTimeListener.addEventListener("input", calcStartTime); 
+endTimeListener.addEventListener("input", calcEndTime);
+
+function calcStartTime(){
+	// Concat formates time and converts Time from OBJECT to STRING for SQL
+	var startTime = startTimeListener.value.concat(':00')
+	console.log('Start Time Entered');
+	console.log(startTime);
+}
+
+function calcEndTime(){
+	// Concat formates time and converts Time from OBJECT to STRING for SQL
+	var formattedEndTime = endTime.value.concat(':00')
+	console.log('End Time Entered');
+	console.log(formattedEndTime);
+}
+
+// https://stackoverflow.com/questions/14544104/checkbox-check-event-listener
+var anyTime = document.getElementById("anyTime");
+
+anyTime.addEventListener('change', function() {
+	if (this.checked) {
+		var startTime = '00:00:00'
+		var endTime = '23:59:59'
+		console.log(startTime, endTime);
+	} else {
+		calcStartTime();
+		calcEndTime();		
+	}
+});

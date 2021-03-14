@@ -16,6 +16,7 @@
 
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&display=swap" rel="stylesheet">
   	</head>
 	  
 	<body>
@@ -57,72 +58,84 @@
           </nav>
           <!-- NAVBAR END -->
 
-          <div class="pl-2">
+          <div class="pl-2 pr-2">
           <h1 class="pt-2">Markets Fresh</h1>
           <h3 class="">Search Local</h3>
           <h3 class="">Eat Local</h3>
 
           <!-- SEARCH LIST -->
-          <form action="" method="GET">
+          <form action="" method="GET" id="searchForm">
             <div class="">
-              <input id="addressID" type="" name="address" class="mb-1 text-input contact-input" placeholder="Address, State, Zip" style="width:95%">
+              <input id="addressID" type="" name="address" class="mt-2 mb-2 text-input contact-input" placeholder="Address, State, Zip" style="width:95%">
               <br>
 <!--               <input id="vendorID" type="" name="vendor" class="mb-1 text-input contact-input" placeholder="Vendor Search" style="width:95%">
               <br>
               <input id="Keywords" type="" name="vendor" class="mb-1 text-input contact-input" placeholder="Keywords" style="width:95%">
               <br> -->
-              <a class="nav-link dropdown-toggle py-0 pl-1" href="#" id="daysDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Days</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="monday">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Monday
-                    </label>
-                  </a></li>
-                  <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="tuesday">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Tuesday
-                    </label>
-                  </a></li>
-                  <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="wednesday">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Wednesday
-                    </label>
-                  </a></li>
-                  <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="thursday">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Thursday
-                    </label>
-                  </a></li>
-                  <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="friday">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Friday
-                    </label>
-                  </a></li>
-                  <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="saturday">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Saturday
-                    </label>
-                  </a></li>
-                  <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="sunday">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Sunday
-                    </label>
-                  </a></li>
-                </ul>
-                  <a class="nav-link dropdown-toggle py-0 pl-1" href="#" id="timeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Hours
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item">
-                      <b>00:00</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="50" data-slider-max="2350" data-slider-step="50" data-slider-value="[800,1400]"/> <b>23:50</b>
-                    </a></li>
-                  </ul>
-            <!-- <div class="btn-class text-center my-2">
-                <button class="searchButton" type="submit" id="buttonClick" value="submit">Search</button>
-            </div> -->
+              
+              <div class="mx-1 row mt-2 mb-2">
+              
+                <div class="pl-0 pr-0 col-sm-12 col-md-2">
+                  <a class="nav-link dropdown-toggle py-0 pl-1" href="#" id="daysDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Days</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="monday">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Monday
+                        </label>
+                      </a></li>
+                      <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="tuesday">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Tuesday
+                        </label>
+                      </a></li>
+                      <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="wednesday">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Wednesday
+                        </label>
+                      </a></li>
+                      <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="thursday">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Thursday
+                        </label>
+                      </a></li>
+                      <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="friday">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Friday
+                        </label>
+                      </a></li>
+                      <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="saturday">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Saturday
+                        </label>
+                      </a></li>
+                      <li><a class="dropdown-item"><input class="form-check-input" type="checkbox" value="" id="sunday">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Sunday
+                        </label>
+                      </a></li>
+                    </ul>
+                </div>
+                
+                <!-- Time Picker: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/time -->
+                <div class="pl-0 pr-0 col-sm-12 col-md-3 text-center">
+                  Start Time
+                  <br><input type="time" id="startTime" name="startTime" min="" max="">
+                </div>
+                <div class="pl-0 pr-0 col-sm-12 col-md-4 text-center">
+                  End Time
+                  <br><input type="time" id="endTime" name="endTime" min="" max="">
+                </div>
+                <div class="pl-0 pr-0 col-sm-12 col-md-3">
+                  Any Time
+                  <br><input class="form-check-input mx-1" type="checkbox" value="" id="anyTime">
+                  <label class="form-check-label" for="flexCheckDefault"></label>
+                </div>
+                
+              </div>
             </div>
           </form>
+
           <div class="btn-class text-center my-2">
             <button class="searchButton" type="submit" id="applySubmit" value="apply">Apply Filters</button>
           </div>
@@ -140,7 +153,8 @@
           <br>
           <h5 id=vendor4></h5>
         </div>
-        </div> <!--END OF LEFT COLUMN-->
+        </div> 
+        <!--END OF LEFT COLUMN-->
         <!-- RIGHTSIDE COLUMN -->
         <div class="col-8 px-0 rightside">
             <div id="map" class="container-fluid my-auto "></div>
