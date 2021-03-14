@@ -113,13 +113,26 @@ function addMarket(){
           var addCell13 = document.getElementById("add13").value;
           var addCell14 = document.getElementById("add14").value;
 
-			var marketObject = new Object();
-		        marketObject = {
-		            "name": addCell1,
+
+      var latCell = ""
+      var lngCell = ""
+      var geoAddress = addCell2 + ', ' + addCell3 + ', ' + addCell4 + ', ' + addCell5
+      // Lat and Lng
+      geocoder = new google.maps.Geocoder();
+      geocoder.geocode( { 'address': geoAddress}, function(results, status) {
+      if (status == 'OK') {
+        latCell = results[0].geometry.bounds.Ra.g
+        lngCell = results[0].geometry.bounds.La.g
+
+        var marketObject = new Object();
+            marketObject = {
+                "name": addCell1,
                 "street": addCell2,
                 "city": addCell3,
                 "state": addCell4,
                 "zip": addCell5,
+                "lat": latCell,
+                "lng": lngCell,
                 "startTime": addCell6,
                 "endTime": addCell7,
                 "monday": addCell8,
@@ -129,9 +142,16 @@ function addMarket(){
                 "friday": addCell12,
                 "saturday": addCell13,
                 "sunday": addCell14
-		        }
+            }
+            console.log(marketObject)
             insertMarketToDB(marketObject);
             $('#marketModal').modal('hide');
+
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+
         }
     })();
 

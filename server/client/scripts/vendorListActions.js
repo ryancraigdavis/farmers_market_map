@@ -241,13 +241,13 @@ function loadVendorList(markets){
           vendorListBody.appendChild(row);
       }
       // Show the populated modal and load the global market variable
-      marketID = data[0].marketID
+      
       $('#vendorListModal').modal('show');
 
       } else {
         console.log("Error in network request: " + req.statusText);
       }});
-
+    marketID = markets.marketID
     req.send(JSON.stringify(markets));
   
 }

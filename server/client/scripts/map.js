@@ -96,6 +96,10 @@ function updateMarkets(){
 	var saturday = document.getElementById('saturday');
 	var sunday = document.getElementById('sunday');
 
+	var startTimeInput = document.getElementById('startTime');
+	var endTimeInput = document.getElementById('endTime');
+	var anyTime = document.getElementById('anyTime');
+
 	daysObject = {
         "monday": monday.checked,
         "tuesday": tuesday.checked,
@@ -106,10 +110,19 @@ function updateMarkets(){
         "sunday": sunday.checked
     };
 
+    hoursObject = {
+        "startTime": startTimeInput.value.concat(':00'),
+        "endTime": endTimeInput.value.concat(':00'),
+        "anyTime": anyTime.checked
+    };
+
 	var filterObject = new Object();
     filterObject = {
-        "days": daysObject
+        "days": daysObject,
+        "hours": hoursObject
     };
+
+    console.log(filterObject)
 
     // We need to reset the pins on the map
     for (let i = 0; i < markers.length; i++) {

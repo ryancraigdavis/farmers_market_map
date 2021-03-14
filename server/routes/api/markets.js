@@ -78,15 +78,30 @@ router.put("/update_market", async (req, res, next) => {
 router.post("/add_market", async (req, res, next) => {
 
   try {
-    const addMarket = 'INSERT INTO `Markets` (`marketName`, `marketQuality`) ' +
-    'VALUES (?, ?)'
+    const addAddress = 'INSERT INTO `Addresses` (`street`, `city`, `state`, `zip`, `lat`, `lng`) ' +
+    'VALUES (?, ?, ?, ?, ?, ?)'
 
-    // DB Query returning the markets for that location
-    pool.query(addMarket, [req.body.marketName, req.body.marketQuality], async function(err, rows, fields) {
+    const addMarket = 'INSERT INTO `FarmersMarkets` (`addressID`, `name`, `startTime`, `endTime`, ' +
+    '`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, ' +
+    '`saturday`, `sunday`) ' +
+    'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+
+    // DB Query that adds markets
+    pool.query(addAddress, [req.body.street, req.body.city, req.body.state, 
+      req.body.zip, req.body.lat, req.body.lng], async function(err, rows, fields) {
       if (err){
         res.send('Failure');
       } else {
-        res.send('Market Updated');
+        pool.query(addMarket, [rows.insertId, req.body.name, req.body.startTime, req.body.endTime,
+        req.body.monday, req.body.tuesday, req.body.wednesday, req.body.thursday, req.body.friday, 
+        req.body.saturday, req.body.sunday], async function(err, rows, fields) {
+          if (err){
+            console.log(err)
+            res.send('Failure');
+          } else {
+            res.send('Market Updated');
+          };
+        });
       };
     });
     

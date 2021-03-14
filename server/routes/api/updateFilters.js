@@ -9,13 +9,57 @@ router.post("/update_filters", async (req, res, next) => {
 
   try {
   	// Return array that needs to be filled with the objects being called from the DB
+    // Construction of query
+    var updateDays = 'SELECT * FROM FarmersMarkets INNER JOIN Addresses ON FarmersMarkets.addressID = Addresses.addressID WHERE ('
+    var count = 0
+    if (req.body.days.monday == 1) {
+      updateDays = updateDays + 'monday = 1 OR '
+      count += 1
+    }
+    if (req.body.days.tuesday == 1) {
+      updateDays = updateDays + 'tuesday = 1 OR '
+      count += 1
+    }
+    if (req.body.days.wednesday == 1) {
+      updateDays = updateDays + 'wednesday = 1 OR '
+      count += 1
+    }
+    if (req.body.days.thursday == 1) {
+      updateDays = updateDays + 'thursday = 1 OR '
+      count += 1
+    }
+    if (req.body.days.friday == 1) {
+      updateDays = updateDays + 'friday = 1 OR '
+      count += 1
+    }
+    if (req.body.days.saturday == 1) {
+      updateDays = updateDays + 'saturday = 1 OR '
+      count += 1
+    }
+    if (req.body.days.sunday == 1) {
+      updateDays = updateDays + 'sunday = 1 OR '
+      count += 1
+    }
+    if (count >= 1) {
+      updateDays = updateDays.substring(0, updateDays.length-4);
+      updateDays = updateDays + ')'
+    }
+
+    if (count == 0) {
+      updateDays = 'SELECT * FROM FarmersMarkets INNER JOIN Addresses ON FarmersMarkets.addressID = Addresses.addressID WHERE (monday = 0 AND tuesday = 0 AND wednesday = 0 AND thursday = 0 ' +
+      ' AND friday = 0 AND saturday = 0 AND sunday = 0)'
+    }
+
+    // Now add the hours
+    if (req.body.hours.anyTime == false && req.body.hours.startTime != "" && req.body.hours.endTime != "") {
+      updateDays = updateDays + ' AND (FarmersMarkets.startTime > "'+req.body.hours.startTime+'" AND FarmersMarkets.endTime < "'+req.body.hours.endTime+'")'
+    }
 
   	returnArray = [];
-    const updateDays = 'SELECT * FROM FarmersMarkets INNER JOIN Addresses ON FarmersMarkets.addressID = Addresses.addressID WHERE monday = ? AND tuesday = ? AND wednesday = ? AND thursday = ? ' +
-      ' AND friday = ? AND saturday = ? AND sunday = ?'
+    // const updateDays = 'SELECT * FROM FarmersMarkets INNER JOIN Addresses ON FarmersMarkets.addressID = Addresses.addressID WHERE monday = ? AND tuesday = ? AND wednesday = ? AND thursday = ? ' +
+    //  ' AND friday = ? AND saturday = ? AND sunday = ?'
   	//DB Query returning the farmers market locations updated by the filters
-  	pool.query(updateDays,[req.body.days.monday, req.body.days.tuesday, req.body.days.wednesday, req.body.days.thursday, req.body.days.friday, 
-      req.body.days.saturday, req.body.days.sunday], async function(err, rows, fields) {
+  	pool.query(updateDays, async function(err, rows, fields) {
   		for (var i = 0; i < rows.length; i++) {
 
         var addressReturnObject = new Object();
