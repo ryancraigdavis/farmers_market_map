@@ -1,14 +1,13 @@
 function insertMarketToDB(market){
-	console.log(market);
 
 	var req = new XMLHttpRequest();
 
-    req.open('POST', 'http://localhost:1359/api/markets/add_market', true);
+    req.open('POST', 'http://144.202.80.206/api/markets/add_market', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
 	    	data = req.responseText;
-	    	alert(data);
+	    	console.log(data)
 	    	$('#marketModal').modal('hide');
       } else {
         console.log("Error in network request: " + req.statusText);
@@ -22,7 +21,7 @@ function deleteMarket(market){
 
 	var req = new XMLHttpRequest();
 
-    req.open('DELETE', 'http://localhost:1359/api/markets/delete_market', true);
+    req.open('DELETE', 'http://144.202.80.206/api/markets/delete_market', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -40,7 +39,7 @@ function updateMarket(market){
 
 	var req = new XMLHttpRequest();
 
-    req.open('PUT', 'http://localhost:1359/api/markets/update_market', true);
+    req.open('PUT', 'http://144.202.80.206/api/markets/update_market', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -189,7 +188,7 @@ function addMarket(){
 function getMarkets(){
     var req = new XMLHttpRequest();
 
-    req.open('GET', 'http://localhost:1359/api/markets/get_markets', true);
+    req.open('GET', 'http://144.202.80.206/api/markets/get_markets', true);
     
     req.withCredentials = false;
 	req.onload = function (e) {
@@ -302,26 +301,43 @@ function getMarkets(){
                   var updateCell13 = document.getElementById("update13").value;
                   var updateCell14 = document.getElementById("update14").value;
                   var updateObject = new Object();
-                  updateObject = {
-                    "marketID": marketVar.market.marketID,
-                    "addressID": marketVar.market.addressID,
-                    "name": updateCell1,
-                    "street": updateCell2,
-                    "city": updateCell3,
-                    "state": updateCell4,
-                    "zip": updateCell5,
-                    "startTime": updateCell6,
-                    "endTime": updateCell7,
-                    "monday": updateCell8,
-                    "tuesday": updateCell9,
-                    "wednesday": updateCell10,
-                    "thursday": updateCell11,
-                    "friday": updateCell12,
-                    "saturday": updateCell13,
-                    "sunday": updateCell14
-                  }
-                  updateMarket(updateObject);
-                    $('#marketModal').modal('hide');
+
+                  var latUpdateCell = ""
+                  var lngUpdateCell = ""
+                  var geoUpdateAddress = updateCell2 + ', ' + updateCell3 + ', ' + updateCell4 + ', ' + updateCell5
+                  // Lat and Lng
+                  geocoderUpdate = new google.maps.Geocoder();
+                  geocoderUpdate.geocode( { 'address': geoUpdateAddress}, function(results, status) {
+                    if (status == 'OK') {
+                      latUpdateCell = results[0].geometry.bounds.Ra.g
+                      lngUpdateCell = results[0].geometry.bounds.La.g
+
+                      updateObject = {
+                        "marketID": marketVar.market.marketID,
+                        "addressID": marketVar.market.addressID,
+                        "name": updateCell1,
+                        "street": updateCell2,
+                        "city": updateCell3,
+                        "state": updateCell4,
+                        "zip": updateCell5,
+                        "lat": latUpdateCell,
+                        "lng": lngUpdateCell,
+                        "startTime": updateCell6,
+                        "endTime": updateCell7,
+                        "monday": updateCell8,
+                        "tuesday": updateCell9,
+                        "wednesday": updateCell10,
+                        "thursday": updateCell11,
+                        "friday": updateCell12,
+                        "saturday": updateCell13,
+                        "sunday": updateCell14
+                      }
+                      updateMarket(updateObject);
+                      $('#marketModal').modal('hide');
+                    } else {
+                      alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                  });
                 }
             })(marketVar);
 

@@ -3,7 +3,7 @@ function insertVendorToDB(vendor){
 
 	var req = new XMLHttpRequest();
 
-    req.open('POST', 'http://localhost:1359/api/vendors/add_vendor', true);
+    req.open('POST', 'http://144.202.80.206/api/vendors/add_vendor', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -22,7 +22,7 @@ function deleteVendor(vendor){
 
 	var req = new XMLHttpRequest();
 
-    req.open('DELETE', 'http://localhost:1359/api/vendors/delete_vendor', true);
+    req.open('DELETE', 'http://144.202.80.206/api/vendors/delete_vendor', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -40,7 +40,7 @@ function updateVendor(vendor){
 
 	var req = new XMLHttpRequest();
 
-    req.open('PUT', 'http://localhost:1359/api/vendors/update_vendor', true);
+    req.open('PUT', 'http://144.202.80.206/api/vendors/update_vendor', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -125,7 +125,7 @@ function addVendor(){
 function getVendors(){
     var req = new XMLHttpRequest();
 
-    req.open('GET', 'http://localhost:1359/api/vendors/get_vendors', true);
+    req.open('GET', 'http://144.202.80.206/api/vendors/get_vendors', true);
     
     req.withCredentials = false;
 	req.onload = function (e) {

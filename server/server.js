@@ -1,6 +1,6 @@
 // Farmers Market App
 // Express - MySQL 
-require('dotenv').config({ path: '../../.env' })
+require('dotenv').config({ path: '../.env' })
 const express = require('express');
 const http = require('http'); // Because we aren't using a template engine - to serve static html files
 const app = express();
@@ -13,11 +13,11 @@ const createDummy = require('./mysql/dummy-data');
 // MySQL pool connections
 const pool = mysql.createPool({
   	connectionLimit  : 10,
-  	host  : 'localhost',
-  	user  : 'root',
-  	password: 'd@taB0ss',
-  	database: 'farmers_market_map'
-    // port: process.env.DB_PORT
+  	host  : process.env.DB_HOST,
+  	user  : process.env.DB_USER,
+  	password: process.env.DB_PASS,
+  	database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 });
 
 // Ping database to check for common exception errors.

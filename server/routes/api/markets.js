@@ -54,18 +54,33 @@ router.delete("/delete_market", async (req, res, next) => {
   }
 });
 
-// Updates a market list
+// Updates a market and address
 router.put("/update_market", async (req, res, next) => {
 
   try {
-    const updateMarket = 'UPDATE FarmersMarkets SET name = ?, name = ?, name = ?, name = ?, name = ?, WHERE Markets.marketID = ?'
+    const updateAddress = 'UPDATE Addresses SET street = ?, city = ?, state = ?, zip = ?, lat = ?, lng = ? ' +
+    'WHERE Addresses.addressID = ?'
 
-    // DB Query returning the markets for that location
-    pool.query(updateMarket, [req.body.marketName, req.body.marketQuality, req.body.marketID], async function(err, rows, fields) {
+    const updateMarket = 'UPDATE FarmersMarkets SET name = ?, startTime = ?, endTime = ?, ' +
+    'monday = ?, tuesday = ?, wednesday = ?, thursday = ?, friday = ?, ' +
+    'saturday = ?, sunday = ? WHERE FarmersMarkets.marketID = ?'
+
+    // DB Query that updates markets
+    pool.query(updateAddress, [req.body.street, req.body.city, req.body.state, 
+      req.body.zip, req.body.lat, req.body.lng, req.body.addressID], async function(err, rows, fields) {
       if (err){
         res.send('Failure');
       } else {
-        res.send('Market Updated');
+        pool.query(updateMarket, [req.body.name, req.body.startTime, req.body.endTime,
+        req.body.monday, req.body.tuesday, req.body.wednesday, req.body.thursday, req.body.friday, 
+        req.body.saturday, req.body.sunday, req.body.marketID], async function(err, rows, fields) {
+          if (err){
+            console.log(err)
+            res.send('Failure');
+          } else {
+            res.send('Market Updated');
+          };
+        });
       };
     });
     
@@ -90,14 +105,14 @@ router.post("/add_market", async (req, res, next) => {
     pool.query(addAddress, [req.body.street, req.body.city, req.body.state, 
       req.body.zip, req.body.lat, req.body.lng], async function(err, rows, fields) {
       if (err){
-        res.send('Failure');
+        res.send(err);
       } else {
         pool.query(addMarket, [rows.insertId, req.body.name, req.body.startTime, req.body.endTime,
         req.body.monday, req.body.tuesday, req.body.wednesday, req.body.thursday, req.body.friday, 
         req.body.saturday, req.body.sunday], async function(err, rows, fields) {
           if (err){
             console.log(err)
-            res.send('Failure');
+            res.send(err);
           } else {
             res.send('Market Updated');
           };
