@@ -166,10 +166,10 @@ body .modal-dialog {
   margin-top: 75px;
 }
 
-#modal-dialog-vendor {
+/* #modal-dialog-vendor {
   width: 1175px !important;
   margin-left: 110px;
-}
+} */
 
 #modal-dialog-service {
   width: 575px !important;
@@ -183,9 +183,22 @@ body .modal-dialog {
   align-items: center;
 }
 
-.modal-open .modal {
-  z-index: 1050;
+
+/* Center Modals on Screen */
+/* 'https://stackoverflow.com/questions/39627549/how-to-center-modal-to-the-center-of-screen/39636961' */
+#vendorListModal,
+#vendorModal,
+#marketModal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
 }
+
+/* .modal-open .modal {
+  z-index: 1050;
+} */
 
 #serviceTable th,
 #vendorTable th {
@@ -237,3 +250,7 @@ body .modal-dialog {
 .insertButton:hover {
   background-color: #23232e;
 }
+
+/* .modalTable {
+
+} */
