@@ -90,10 +90,10 @@ function addMarket(){
   cell14Add.innerHTML = '<input type="text" id="add14">'
   var cell15AddName = document.createElement('button');
 	cell15AddName.innerHTML = "Submit";
-  cell15AddName.classList.add('submitRow')
+  cell15AddName.classList.add('submitRow');
   var cell16AddName = document.createElement('button');
 	cell16AddName.innerHTML = "Delete";
-  cell16AddName.classList.add('deleteRow')
+  cell16AddName.classList.add('deleteRow');
 
 	cell15AddName.onclick = (function(){
         return function(){
@@ -246,24 +246,60 @@ function getMarkets(){
 
           cell15name.onclick = (function(marketVar){
             return function(){
+              // var marketListBody = document.getElementById("marketBody");
+              // var rowUp = document.createElement("tr");
+              // var cell1Up = document.createElement("td");
+              // var cell2Up = document.createElement("td");
+              // var cell3Up = document.createElement("td");
+              // var cell4Up = document.createElement("td");
+              // var cell5Up = document.createElement("td");
+              // var cell6Up = document.createElement("td");
+              // var cell7Up = document.createElement("td");
+              // var cell8Up = document.createElement("td");
+              // var cell9Up = document.createElement("td");
+              // var cell10Up = document.createElement("td");
+              // var cell11Up = document.createElement("td");
+              // var cell12Up = document.createElement("td");
+              // var cell13Up = document.createElement("td");
+              // var cell14Up = document.createElement("td");
+              // var cell15Up = document.createElement("td");
+              // var cell16Up = document.createElement("td");
+
               var marketListBody = document.getElementById("marketBody");
-              var rowUp = document.createElement("tr");
-              var cell1Up = document.createElement("td");
-              var cell2Up = document.createElement("td");
-              var cell3Up = document.createElement("td");
-              var cell4Up = document.createElement("td");
-              var cell5Up = document.createElement("td");
-              var cell6Up = document.createElement("td");
-              var cell7Up = document.createElement("td");
-              var cell8Up = document.createElement("td");
-              var cell9Up = document.createElement("td");
-              var cell10Up = document.createElement("td");
-              var cell11Up = document.createElement("td");
-              var cell12Up = document.createElement("td");
-              var cell13Up = document.createElement("td");
-              var cell14Up = document.createElement("td");
-              var cell15Up = document.createElement("td");
-              var cell16Up = document.createElement("td");
+              var rowUp = document.createElement("div");
+              
+              // Build list of Children in JS
+              // https://www.w3schools.com/jsref/met_node_appendchild.asp
+              var cell1Up = document.createElement("li");
+              rowUp.appendChild(cell1Up);
+              var cell2Up = document.createElement("li");
+              rowUp.appendChild(cell2Up);
+              var cell3Up = document.createElement("li");
+              rowUp.appendChild(cell3Up);
+              var cell4Up = document.createElement("li");
+              rowUp.appendChild(cell4Up);
+              var cell5Up = document.createElement("li");
+              rowUp.appendChild(cell5Up);
+              var cell6Up = document.createElement("li");
+              rowUp.appendChild(cell6Up);
+              var cell7Up = document.createElement("li");
+              rowUp.appendChild(cell7Up);
+              var cell8Up = document.createElement("li");
+              rowUp.appendChild(cell8Up);
+              var cell9Up = document.createElement("li");
+              rowUp.appendChild(cell9Up);
+              var cell10Up = document.createElement("li");
+              rowUp.appendChild(cell10Up);
+              var cell11Up = document.createElement("li");
+              rowUp.appendChild(cell11Up);
+              var cell12Up = document.createElement("li");
+              rowUp.appendChild(cell12Up);
+              var cell13Up = document.createElement("li");
+              rowUp.appendChild(cell13Up);
+              var cell14Up = document.createElement("li");
+              rowUp.appendChild(cell14Up);
+              var cell15Up = document.createElement("div");
+              var cell16Up = document.createElement("div");
 
                 cell1Up.innerHTML = '<input type="text" id="update1" value="'+marketVar.market.name+'">'
                 cell2Up.innerHTML = '<input type="text" id="update2" value="'+marketVar.market.street+'">'
@@ -279,6 +315,22 @@ function getMarkets(){
                 cell12Up.innerHTML = '<input type="text" id="update12" value="'+marketVar.market.friday+'">'
                 cell13Up.innerHTML = '<input type="text" id="update13" value="'+marketVar.market.saturday+'">'
                 cell14Up.innerHTML = '<input type="text" id="update14" value="'+marketVar.market.sunday+'">'
+                
+                // cell1Up.classList.add('modalTable');
+                // cell2Up.classList.add('modalTable');
+                // cell3Up.classList.add('modalTable');
+                // cell4Up.classList.add('modalTable');
+                // cell5Up.classList.add('modalTable');
+                // cell6Up.classList.add('modalTable');
+                // cell7Up.classList.add('modalTable');
+                // cell8Up.classList.add('modalTable');
+                // cell9Up.classList.add('modalTable');
+                // cell10Up.classList.add('modalTable');
+                // cell11Up.classList.add('modalTable');
+                // cell12Up.classList.add('modalTable');
+                // cell13Up.classList.add('modalTable');
+                // cell14Up.classList.add('modalTable');
+                
                 var cell15UpName = document.createElement('button');
               cell15UpName.innerHTML = "Submit";
               var cell16UpName = document.createElement('button');
@@ -301,7 +353,7 @@ function getMarkets(){
                   var updateCell13 = document.getElementById("update13").value;
                   var updateCell14 = document.getElementById("update14").value;
                   var updateObject = new Object();
-
+                  
                   var latUpdateCell = ""
                   var lngUpdateCell = ""
                   var geoUpdateAddress = updateCell2 + ', ' + updateCell3 + ', ' + updateCell4 + ', ' + updateCell5
@@ -345,6 +397,7 @@ function getMarkets(){
                 return function(){
                   $('#marketModal').modal('hide');
                   alert('Update Cancelled');
+                  // $(".modal-backdrop").remove(); !!! This will remove the backdrop - but will prevent new modals from opening
                 }
             })();
             cell15Up.appendChild(cell15UpName);
