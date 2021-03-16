@@ -2,7 +2,7 @@ function insertMarketToDB(market){
 
 	var req = new XMLHttpRequest();
 
-    req.open('POST', 'http://144.202.80.206/api/markets/add_market', true);
+    req.open('POST', 'http://144.202.80.206:1359/api/markets/add_market', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -21,7 +21,7 @@ function deleteMarket(market){
 
 	var req = new XMLHttpRequest();
 
-    req.open('DELETE', 'http://144.202.80.206/api/markets/delete_market', true);
+    req.open('DELETE', 'http://144.202.80.206:1359/api/markets/delete_market', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -39,7 +39,7 @@ function updateMarket(market){
 
 	var req = new XMLHttpRequest();
 
-    req.open('PUT', 'http://144.202.80.206/api/markets/update_market', true);
+    req.open('PUT', 'http://144.202.80.206:1359/api/markets/update_market', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -188,7 +188,7 @@ function addMarket(){
 function getMarkets(){
     var req = new XMLHttpRequest();
 
-    req.open('GET', 'http://144.202.80.206/api/markets/get_markets', true);
+    req.open('GET', 'http://144.202.80.206:1359/api/markets/get_markets', true);
     
     req.withCredentials = false;
 	req.onload = function (e) {

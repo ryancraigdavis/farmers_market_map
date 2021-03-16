@@ -8,7 +8,7 @@ let markers = [];
 var searchButton = document.getElementById('searchSubmit');
 
 // Server location address
-var serverUrl = 'http://144.202.80.206';
+var serverUrl = 'http://144.202.80.206:1359';
 
 function loadServicesList(markets){
 	// $('#servicesModal').modal('show');

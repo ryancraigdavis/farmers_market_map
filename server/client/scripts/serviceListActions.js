@@ -3,7 +3,7 @@ let insertServiceID;
 function getServicesToAdd(){
     var req = new XMLHttpRequest();
 
-    req.open('GET', 'http://144.202.80.206/api/services/get_services', true);
+    req.open('GET', 'http://144.202.80.206:1359/api/services/get_services', true);
     
     req.withCredentials = false;
     req.onload = function (e) {
@@ -41,7 +41,7 @@ function addServiceList(){
 
     var req = new XMLHttpRequest();
 
-    req.open('POST', 'http://144.202.80.206/api/services/add_service_list', true);
+    req.open('POST', 'http://144.202.80.206:1359/api/services/add_service_list', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
@@ -64,7 +64,7 @@ function deleteServicesList(service){
 
 	var req = new XMLHttpRequest();
 
-    req.open('DELETE', 'http://144.202.80.206/api/services/delete_service_list', true);
+    req.open('DELETE', 'http://144.202.80.206:1359/api/services/delete_service_list', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -82,7 +82,7 @@ function updateServicesList(service){
   console.log(service);
 	var req = new XMLHttpRequest();
 
-    req.open('PUT', 'http://144.202.80.206/api/services/update_service_list', true);
+    req.open('PUT', 'http://144.202.80.206:1359/api/services/update_service_list', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
       	if(req.status >= 200 && req.status < 400){
@@ -100,7 +100,7 @@ function loadServiceList(markets){
 
   var req = new XMLHttpRequest();
 
-    req.open('POST', 'http://144.202.80.206/api/services/get_service_lists', true);
+    req.open('POST', 'http://144.202.80.206:1359/api/services/get_service_lists', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.addEventListener('load',function(){
         if(req.status >= 200 && req.status < 400){
