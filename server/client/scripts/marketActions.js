@@ -246,60 +246,60 @@ function getMarkets(){
 
           cell15name.onclick = (function(marketVar){
             return function(){
-              // var marketListBody = document.getElementById("marketBody");
-              // var rowUp = document.createElement("tr");
-              // var cell1Up = document.createElement("td");
-              // var cell2Up = document.createElement("td");
-              // var cell3Up = document.createElement("td");
-              // var cell4Up = document.createElement("td");
-              // var cell5Up = document.createElement("td");
-              // var cell6Up = document.createElement("td");
-              // var cell7Up = document.createElement("td");
-              // var cell8Up = document.createElement("td");
-              // var cell9Up = document.createElement("td");
-              // var cell10Up = document.createElement("td");
-              // var cell11Up = document.createElement("td");
-              // var cell12Up = document.createElement("td");
-              // var cell13Up = document.createElement("td");
-              // var cell14Up = document.createElement("td");
-              // var cell15Up = document.createElement("td");
-              // var cell16Up = document.createElement("td");
+              var marketListBody = document.getElementById("marketBody");
+              var rowUp = document.createElement("tr");
+              var cell1Up = document.createElement("td");
+              var cell2Up = document.createElement("td");
+              var cell3Up = document.createElement("td");
+              var cell4Up = document.createElement("td");
+              var cell5Up = document.createElement("td");
+              var cell6Up = document.createElement("td");
+              var cell7Up = document.createElement("td");
+              var cell8Up = document.createElement("td");
+              var cell9Up = document.createElement("td");
+              var cell10Up = document.createElement("td");
+              var cell11Up = document.createElement("td");
+              var cell12Up = document.createElement("td");
+              var cell13Up = document.createElement("td");
+              var cell14Up = document.createElement("td");
+              var cell15Up = document.createElement("td");
+              var cell16Up = document.createElement("td");
 
               var marketListBody = document.getElementById("marketBody");
               var rowUp = document.createElement("div");
               
               // Build list of Children in JS
               // https://www.w3schools.com/jsref/met_node_appendchild.asp
-              var cell1Up = document.createElement("li");
-              rowUp.appendChild(cell1Up);
-              var cell2Up = document.createElement("li");
-              rowUp.appendChild(cell2Up);
-              var cell3Up = document.createElement("li");
-              rowUp.appendChild(cell3Up);
-              var cell4Up = document.createElement("li");
-              rowUp.appendChild(cell4Up);
-              var cell5Up = document.createElement("li");
-              rowUp.appendChild(cell5Up);
-              var cell6Up = document.createElement("li");
-              rowUp.appendChild(cell6Up);
-              var cell7Up = document.createElement("li");
-              rowUp.appendChild(cell7Up);
-              var cell8Up = document.createElement("li");
-              rowUp.appendChild(cell8Up);
-              var cell9Up = document.createElement("li");
-              rowUp.appendChild(cell9Up);
-              var cell10Up = document.createElement("li");
-              rowUp.appendChild(cell10Up);
-              var cell11Up = document.createElement("li");
-              rowUp.appendChild(cell11Up);
-              var cell12Up = document.createElement("li");
-              rowUp.appendChild(cell12Up);
-              var cell13Up = document.createElement("li");
-              rowUp.appendChild(cell13Up);
-              var cell14Up = document.createElement("li");
-              rowUp.appendChild(cell14Up);
-              var cell15Up = document.createElement("div");
-              var cell16Up = document.createElement("div");
+              // var cell1Up = document.createElement("li");
+              // rowUp.appendChild(cell1Up);
+              // var cell2Up = document.createElement("li");
+              // rowUp.appendChild(cell2Up);
+              // var cell3Up = document.createElement("li");
+              // rowUp.appendChild(cell3Up);
+              // var cell4Up = document.createElement("li");
+              // rowUp.appendChild(cell4Up);
+              // var cell5Up = document.createElement("li");
+              // rowUp.appendChild(cell5Up);
+              // var cell6Up = document.createElement("li");
+              // rowUp.appendChild(cell6Up);
+              // var cell7Up = document.createElement("li");
+              // rowUp.appendChild(cell7Up);
+              // var cell8Up = document.createElement("li");
+              // rowUp.appendChild(cell8Up);
+              // var cell9Up = document.createElement("li");
+              // rowUp.appendChild(cell9Up);
+              // var cell10Up = document.createElement("li");
+              // rowUp.appendChild(cell10Up);
+              // var cell11Up = document.createElement("li");
+              // rowUp.appendChild(cell11Up);
+              // var cell12Up = document.createElement("li");
+              // rowUp.appendChild(cell12Up);
+              // var cell13Up = document.createElement("li");
+              // rowUp.appendChild(cell13Up);
+              // var cell14Up = document.createElement("li");
+              // rowUp.appendChild(cell14Up);
+              // var cell15Up = document.createElement("div");
+              // var cell16Up = document.createElement("div");
 
                 cell1Up.innerHTML = '<input type="text" id="update1" value="'+marketVar.market.name+'">'
                 cell2Up.innerHTML = '<input type="text" id="update2" value="'+marketVar.market.street+'">'
