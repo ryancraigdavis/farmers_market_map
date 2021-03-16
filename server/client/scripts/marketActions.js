@@ -481,3 +481,6 @@ function getMarkets(){
 	};
 	req.send(null);
 };
+// var totalwidth = 190 * $('.market-scroll').length;
+
+// $('.market-scroll').css('width', totalwidth);

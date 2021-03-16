@@ -165,41 +165,43 @@
     <!-- Markets Modal -->
     <div class="modal fade" id="marketModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog" id="modal-dialog-market" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel">Market List</h5>
-            <button type="button" class="close" onclick="$('#marketModal').modal('hide')" aria-label="Close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="market-scroll">  
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Market List</h5>
+              <button type="button" class="close" onclick="$('#marketModal').modal('hide')" aria-label="Close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table id="marketTable">
+                <thead>
+                  <tr>
+                    <th>Market Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip Code</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                    <!-- <th>Update</th>
+                    <th>Delete</th> -->
+                    <th colspan="2"><button class="insertButton" onclick="addMarket()">Insert</button></th>
+                  </tr>
+                </thead>
+                <tbody id="marketBody">
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="modal-body">
-            <table id="marketTable">
-              <thead>
-                <tr>
-                  <th>Market Name</th>
-                  <th>Address</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Zip Code</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                  <th>Monday</th>
-                  <th>Tuesday</th>
-                  <th>Wednesday</th>
-                  <th>Thursday</th>
-                  <th>Friday</th>
-                  <th>Saturday</th>
-                  <th>Sunday</th>
-                  <!-- <th>Update</th>
-                  <th>Delete</th> -->
-                  <th colspan="2"><button class="insertButton" onclick="addMarket()">Insert</button></th>
-                </tr>
-              </thead>
-              <tbody id="marketBody">
-              </tbody>
-            </table>
-          </div>
-        </div>
+        </div>  
       </div>
     </div>
 

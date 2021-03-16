@@ -157,6 +157,12 @@ h3 {
   width: 75px;
 }
 
+.market-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    width:5000px;
+}
+
 /*Modal Dynamic Sizing
 https://stackoverflow.com/questions/34307647/bootstrap-modal-dynamic-width*/
 body .modal-dialog {
